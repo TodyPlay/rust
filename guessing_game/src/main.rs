@@ -34,7 +34,8 @@ fn main() {
             Ordering::Less => println!("你输入的数字小了"),
             Ordering::Greater => println!("你输入的数字大了"),
             Ordering::Equal => {
-                println!("猜中了，游戏结束");
+                println!("猜中了，游戏结束，按任意键退出程序");
+                let _result = io::stdin().read_line(&mut String::new());
                 break;
             }
         }
