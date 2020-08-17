@@ -12,7 +12,7 @@ fn main() {
     loop {
         println!("输入一个数字，以回车结束");
         let mut num_str = String::new();
-        io::stdin().read_line(&mut num_str).expect("读取失败,请重启程序");
+        io::stdin().read_line(&mut num_str).expect("系统错误,请重启程序");
 
         let num: u32;
 
