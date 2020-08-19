@@ -18,44 +18,44 @@ fn main() {
         // println!("after back_string :{}", str1); //这里报错，因为 上面的方法 str1 的所有权已经被移动了
 
         let _len = no_owner_ship(&str);
-        println!("after no_owner_ship :{}", str); //这里可以继续使用，因为str的所有权并没有移动到方法中}
+        println!("after no_owner_ship :{}", str); //这里可以继续使用，因为str的所有权并没有移动到方法中
+    }
 
-        {
-            let mut str = String::from("hello");
-            // mut_reference(&mut str);     //以下两行代码也有相同作用
-            let str = &mut str;
-            mut_reference(str);
-            println!("mut reference :{}", str);
-        }
-        {
-            let mut str = String::from("hello");
-            // let mut1 = &mut str;
-            // let mut2 = &mut str;
+    {
+        let mut str = String::from("hello");
+        // mut_reference(&mut str);     //以下两行代码也有相同作用
+        let str = &mut str;
+        mut_reference(str);
+        println!("mut reference :{}", str);
+    }
+    {
+        let mut str = String::from("hello");
+        // let mut1 = &mut str;
+        // let mut2 = &mut str;
 
-            // println!("{}{}", mut1, mut2); //报错，因为发生了两次可变引用
+        // println!("{}{}", mut1, mut2); //报错，因为发生了两次可变引用
 
-            // println!("{}{}", &mut str, &mut str); //同样报错，两次可变引用
+        // println!("{}{}", &mut str, &mut str); //同样报错，两次可变引用
 
-            let mut1 = &mut str;
+        let mut1 = &mut str;
 
-            println!("{}{}", mut1, mut1);
-        }
+        println!("{}{}", mut1, mut1);
+    }
 
-        {
-            let mut str = String::from("hello");
-            let str2 = slices(&str);    //str2是一个引用str的slice
+    {
+        let str = String::from("hello");
+        let str2 = slices(&str);    //str2是一个引用str的slice
 
-            // str.clear();     //此处创建了以一个可变引用，前面有一个不可变引用，在可变引用创建后不能使用不可变引用，所以会报错
+        // str.clear();     //此处创建了以一个可变引用，前面有一个不可变引用，在可变引用创建后不能使用不可变引用，所以会报错
 
-            println!("str: {}, slice:{}", str, str2);
-        }
+        println!("str: {}, slice:{}", str, str2);
+    }
 
-        {
-            let mut str = String::from("slices");
-            let str1 = reference(&str);
-            // str.clear(); //报错 原因同上
-            println!("self:{},reference:{}", str, str1);
-        }
+    {
+        let str = String::from("slices");
+        let str1 = reference(&str);
+        // str.clear(); //报错 原因同上
+        println!("self:{},reference:{}", str, str1);
     }
 }
 
