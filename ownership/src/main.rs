@@ -15,8 +15,14 @@ fn main() {
 
     // println!("after back_string :{}", str1); //这里报错，因为 上面的方法 str1 的所有权已经被移动了
 
-    let len = no_owner_ship(&str);
+    let _len = no_owner_ship(&str);
     println!("after no_owner_ship :{}", str); //这里可以继续使用，因为str的所有权并没有移动到方法中
+
+    let mut str = String::from("hello");
+    // mut_reference(&mut str);     //一下两行代码也有相同作用
+    let str = &mut str;
+    mut_reference(str);
+    println!("mut reference :{}", str);
 }
 
 fn handle_str(str: String) {
@@ -35,4 +41,8 @@ fn back_string(str: String) -> String {
 
 fn no_owner_ship(str: &String) -> usize {
     str.len()
+}
+
+fn mut_reference(str: &mut String) {
+    str.push_str(" world");
 }
