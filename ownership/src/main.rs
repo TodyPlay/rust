@@ -43,7 +43,7 @@ fn main() {
     }
 
     {
-        let str = String::from("hello");
+        let mut str = String::from("hello");
         let str2 = slices(&str);    //str2是一个引用str的slice
 
         // str.clear();     //此处创建了以一个可变引用，前面有一个不可变引用，在可变引用创建后不能使用不可变引用，所以会报错
@@ -52,7 +52,7 @@ fn main() {
     }
 
     {
-        let str = String::from("slices");
+        let mut str = String::from("slices");
         let str1 = reference(&str);
         // str.clear(); //报错 原因同上
         println!("self:{},reference:{}", str, str1);
