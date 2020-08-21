@@ -20,8 +20,16 @@ fn main() {
         active: false,
         ..user2
     };
+
+    //元组结构体实例化
+    let mut color = Color(0, 0, 0);
+    let point = Point(12, 23);
+    //元组结构体取值
+    let r = &color.0;
+    color.1 = 12;
 }
 
+//普通结构体
 #[derive(Debug)]
 struct User {
     username: String,
@@ -30,8 +38,14 @@ struct User {
     active: bool,
 }
 
+//为结构体实现某个特征
 impl PartialEq<User> for User {
     fn eq(&self, other: &Self) -> bool {
         self.username == other.username && self.email == other.email && self.password == other.password && self.active == other.active
     }
 }
+
+//元组结构体
+struct Color(i32, i32, i32);
+
+struct Point(i32, i32);
