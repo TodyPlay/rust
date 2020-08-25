@@ -73,6 +73,7 @@ fn back_string(str: String) -> String {
     str
 }
 
+//我们将获取引用作为函数参数称为 借用（borrowing）
 fn no_owner_ship(str: &String) -> usize {
     str.len()
 }
