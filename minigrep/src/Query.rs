@@ -1,4 +1,5 @@
 use std::fs::read_to_string;
+use std::env::Args;
 
 pub struct Query {
     search: String,
@@ -6,18 +7,28 @@ pub struct Query {
 }
 
 impl Query {
-    pub fn new(vec: &[String]) -> Result<Query, String> {
-        if vec.len() < 3 {
-            Err("入参数量不够".to_string())
-        } else {
-            let content = read_to_string(&vec[2]);
-            match content {
-                Ok(content) => Ok(Query {
-                    search: vec[1].clone(),
-                    content,
-                }),
-                Err(err) => Err(err.to_string()),
-            }
+    pub fn new(mut args: Args) -> Result<Query, String> {
+        args.next();
+
+        let search = match args.next() {
+            Some(val) => val,
+            None => return Err("no search str".to_string()),
+        };
+
+        let filename = match args.next() {
+            Some(val) => val,
+            None => return Err("no file name str".to_string()),
+        };
+
+        let content = read_to_string(&filename);
+
+
+        match content {
+            Ok(content) => Ok(Query {
+                search,
+                content,
+            }),
+            Err(err) => Err(err.to_string()),
         }
     }
 
