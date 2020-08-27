@@ -1,5 +1,5 @@
-use std::{env, process};
-use minigrep::Query;
+use std::env;
+use minigrep::query::Query;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -7,10 +7,16 @@ fn main() {
         Ok(query) => query,
         Err(err) => {
             println!("{}", err);
-            process::exit(1);
+            return;
         }
     };
     let content = query.search();
+
+    if content.is_empty() {
+        println!("no match");
+        return;
+    }
+
     for x in content {
         println!("{}", x);
     }
