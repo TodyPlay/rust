@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::Read;
 use std::error::Error;
+use std::io;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let mut file = read_file()?;
@@ -27,5 +28,9 @@ fn read_files() -> Result<File, Box<dyn Error>> {
         Err(e) => Err(Box::new(e)),
         Ok(ok) => Ok(ok),
     }
+}
+
+fn read_files2() -> io::Result<File> {
+    File::open("Cargo.lock")
 }
 
