@@ -1,9 +1,11 @@
 use std::env;
 use minigrep::query::Query;
+use std::env::Args;
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    let query = match Query::new(&args) {
+    let args: Args = env::args();
+
+    let query = match Query::new(args) {
         Ok(query) => query,
         Err(err) => {
             println!("{}", err);
