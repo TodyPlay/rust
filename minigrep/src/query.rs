@@ -1,4 +1,4 @@
-use std::fs::read_to_string;
+use std::fs;
 use std::env::Args;
 
 pub struct Query {
@@ -20,7 +20,7 @@ impl Query {
             None => return Err("no file name str".to_string()),
         };
 
-        let content = read_to_string(&filename);
+        let content = fs::read_to_string(&filename);
 
 
         match content {
