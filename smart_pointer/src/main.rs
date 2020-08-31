@@ -21,7 +21,7 @@ enum List<T> {
     NULL,
 }
 
-//自定义只能指针
+//自定义智能指针
 struct MyBox<T>(T);
 
 impl<T> MyBox<T> {
