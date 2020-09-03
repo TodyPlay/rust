@@ -1,3 +1,5 @@
+pub mod two_tree;
+
 #[cfg(test)]
 mod tests {
     use crate::two_tree::TwoTree;
@@ -29,5 +31,3 @@ mod tests {
         println!("{:#?}", tree);
     }
 }
-
-pub mod two_tree;
