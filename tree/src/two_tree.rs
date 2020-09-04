@@ -1,17 +1,17 @@
 #[derive(Debug)]
-pub struct TwoTree {
-    root_node: Option<TreeNode>,
+pub struct TwoTree<T> where T: PartialOrd {
+    root_node: Option<TreeNode<T>>,
 }
 
 #[derive(Debug)]
-struct TreeNode {
-    val: i32,
-    left: Option<Box<TreeNode>>,
-    right: Option<Box<TreeNode>>,
+struct TreeNode<T> {
+    val: T,
+    left: Option<Box<TreeNode<T>>>,
+    right: Option<Box<TreeNode<T>>>,
 }
 
-impl TreeNode {
-    fn new(val: i32) -> TreeNode {
+impl<T> TreeNode<T> where T: PartialOrd {
+    fn new(val: T) -> TreeNode<T> {
         TreeNode {
             val,
             left: None,
@@ -19,7 +19,7 @@ impl TreeNode {
         }
     }
 
-    fn put_val(&mut self, val: i32) {
+    fn put_val(&mut self, val: T) {
         let node;
 
         if val > self.val {
@@ -35,14 +35,14 @@ impl TreeNode {
     }
 }
 
-impl TwoTree {
-    pub fn new() -> TwoTree {
+impl<T> TwoTree<T> where T: PartialOrd {
+    pub fn new() -> TwoTree<T> {
         TwoTree {
             root_node: None,
         }
     }
 
-    pub fn add(&mut self, val: i32) {
+    pub fn add(&mut self, val: T) {
         match &mut self.root_node {
             None => self.root_node = Some(TreeNode::new(val)),
             Some(node) => node.put_val(val),
