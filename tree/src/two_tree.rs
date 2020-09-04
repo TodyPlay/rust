@@ -20,17 +20,18 @@ impl TreeNode {
     }
 
     fn put_val(&mut self, val: i32) {
+        let node;
+
         if val > self.val {
-            match &mut self.right {
-                None => { self.right = Some(Box::new(TreeNode::new(val))) }
-                Some(nodes) => { nodes.put_val(val) }
-            }
+            node = &mut self.right;
         } else {
-            match &mut self.left {
-                None => { self.left = Some(Box::new(TreeNode::new(val))) }
-                Some(nodes) => { nodes.put_val(val) }
-            }
-        }
+            node = &mut self.left;
+        };
+
+        match node {
+            None => { *node = Some(Box::new(TreeNode::new(val))) }
+            Some(nodes) => { nodes.put_val(val) }
+        };
     }
 }
 
