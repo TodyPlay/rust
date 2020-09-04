@@ -33,6 +33,19 @@ impl<T> TreeNode<T> where T: PartialOrd {
             Some(nodes) => { nodes.put_val(val) }
         };
     }
+
+    fn for_each<K>(&self, func: &K)
+        where K: Fn(&T) {
+        func(&self.val);
+        match &self.left {
+            Some(val) => val.for_each(func),
+            None => {}
+        }
+        match &self.right {
+            Some(val) => val.for_each(func),
+            None => {}
+        }
+    }
 }
 
 impl<T> TwoTree<T> where T: PartialOrd {
@@ -46,6 +59,14 @@ impl<T> TwoTree<T> where T: PartialOrd {
         match &mut self.root_node {
             None => self.root_node = Some(TreeNode::new(val)),
             Some(node) => node.put_val(val),
+        };
+    }
+
+    pub fn for_each<K>(&mut self, func: K)
+        where K: Fn(&T) {
+        match &self.root_node {
+            None => {}
+            Some(node) => { node.for_each(&func) }
         };
     }
 }

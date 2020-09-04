@@ -28,6 +28,6 @@ mod tests {
             tree.add(x);
         };
 
-        println!("{:#?}", tree);
+        tree.for_each(|x| println!("{}", x));
     }
 }
