@@ -29,6 +29,8 @@ mod tests {
         };
 
         tree.for_each(|x| println!("{}", x));
+
+        println!("{:#?}", tree);
     }
 
     #[test]

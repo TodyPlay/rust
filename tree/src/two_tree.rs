@@ -62,7 +62,7 @@ impl<T> TwoTree<T> where T: PartialOrd {
         };
     }
 
-    pub fn for_each<K>(&mut self, func: K)
+    pub fn for_each<K>(&self, func: K)
         where K: Fn(&T) {
         match &self.root_node {
             None => {}
