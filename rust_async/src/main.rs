@@ -1,5 +1,4 @@
 use futures::executor::block_on;
-use std::fs;
 
 fn main() {
     block_on(async_main());
@@ -12,11 +11,6 @@ async fn learn_song() {
 
 async fn sing_song() {
     println!("sing song");
-    let str = fs::read_to_string("C:\\Users\\83779\\Desktop\\SD-TY\\SD_TY (1).bpmn");//尝试阻塞
-    match str {
-        Ok(str) => println!("{}", str),
-        Err(err) => println!("{}", err.to_string())
-    }
 }
 
 async fn dance() {
@@ -29,5 +23,6 @@ async fn learn_and_sing() {
 }
 
 async fn async_main() {
-    futures::join!(learn_and_sing(),dance());
+    dance().await;
+    learn_and_sing().await;
 }
